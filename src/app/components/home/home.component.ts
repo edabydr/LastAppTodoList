@@ -58,15 +58,22 @@ export class HomeComponent {
   }
 
   setItems() {
+    if(!localStorage.getItem('pendings')){
+      localStorage.setItem('pendings', JSON.stringify(this.data.pendings));
+    }else{
+      this.data.pendings = JSON.parse('pendings');
+    }
+    if(!localStorage.getItem('inProgress')){
+      localStorage.setItem('inProgress', JSON.stringify(this.data.inProgress));
+    }else{
+      this.data.pendings = JSON.parse('inProgress');
+    }
+    if(!localStorage.getItem('done')){
+      localStorage.setItem('done', JSON.stringify(this.data.done));
+    }else{
+      this.data.pendings = JSON.parse('done');
+    }
 
-    Object.keys(this.data).forEach((key: any) => {
-      if (!localStorage.getItem(key)) {
-        localStorage.setItem(key, JSON.stringify(this.data.pendings[key]));
-      }
-      else {
-        this.data = JSON.parse(this.data.pendings[key]);
-      }
 
-    });
   }
 }
